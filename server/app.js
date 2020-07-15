@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+
+import indexRoute from './routes/index'
 import './model/index';
-// const express = require('express');
-// const bodyParser = require('body-parser');
 
 // create express app
 const app = express();
@@ -14,9 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // define a simple route
-app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
-});
+// app.get('/', (req, res) => {
+//     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+// });
+indexRoute(app);
 
 // listen for requests
 app.listen(3000, () => {

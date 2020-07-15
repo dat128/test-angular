@@ -12,7 +12,7 @@ const accountSchema = new Schema({
     },
     gender: {
         type: Number,
-        enum: [0, 1],
+        enum: [1, 2],
         required: true,
     },
     balance: {
