@@ -1,0 +1,5 @@
+{
+    "secretSignature": "test-anm-angular",
+    "tokenLife": "30d",
+    "bcryptRound": 10
+}

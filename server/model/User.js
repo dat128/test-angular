@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-import bcrypt from 'bcrypt';
 
 import data from '../data/user.json';
+import { hashPassword } from '../utils/helper';
 
 const userSchema = new Schema({
     user_name: {
@@ -26,8 +26,8 @@ export default User;
 Promise.all(
     data.map( async (item) => {
         const query = { user_name: item.user_name };
-        const password = await bcrypt.hash(item.password, 10)
-        item.password = password;
+        const password = await hashPassword(item.password);
+        item.password = password
         const update = item;
         const option = {
             upsert: true,

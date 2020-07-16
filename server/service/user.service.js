@@ -10,7 +10,10 @@ const loginService = async (user_name, password) => {
     if (!compare) {
         return false
     }
-    return true
+    return {
+        result: true,
+        user
+    }
 }
 
 export {
