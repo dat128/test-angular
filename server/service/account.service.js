@@ -3,8 +3,8 @@ import message from '../constant/message'
 
 const getAccountsService = async (query, limit, skip) => {
     const gender = query.gender || null
-    const user_name = new RegExp(query.user_name, 'i')
-    const account_number = new RegExp(query.account_number, 'i')
+    const fullName = new RegExp(query.fullName, 'i')
+    const accountNumber = new RegExp(query.accountNumber, 'i')
     const email = new RegExp(query.email, 'i')
     const col = query.col || null
     const sort = query.sort || null
@@ -12,10 +12,10 @@ const getAccountsService = async (query, limit, skip) => {
     const queryDb = {
         $and: [
             {
-                user_name
+                fullName
             },
             {
-                account_number
+                accountNumber
             },
             {
                 email
@@ -45,7 +45,7 @@ const createAccountService = async (data) => {
             message: message.MSG0007
         }
     }
-    account = await Account.findOne({ account_number: data.account_number })
+    account = await Account.findOne({ accountNumber: data.accountNumber })
     if (account) {
         return {
             result: false,
@@ -79,7 +79,7 @@ const updateAccountService = async (id, data) => {
         }
     }
     if (data.account_number) {
-        account = await Account.findOne({ account_number: data.account_number })
+        account = await Account.findOne({ accountNumber: data.accountNumber })
         if (account.id !== id) {
             return {
                 result: false,

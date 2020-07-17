@@ -38,7 +38,7 @@ const generateJWTToken = async function(data) {
         {
             id: data._id,
             role: data.role,
-            user_name: data.user_name
+            username: data.username
         },
         config.secretSignature,
         {
@@ -49,7 +49,8 @@ const generateJWTToken = async function(data) {
 }
 
 const verifyJWTToken = async function(token) {
-    const data = await jwt.verify(token, config.secretSignature)
+    console.log(123)
+    const data = jwt.verify(token, config.secretSignature)
     return data
 }
 

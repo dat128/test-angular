@@ -19,7 +19,7 @@ const getAccountsController = async (req, res) => {
 
 const createAccountController = async(req, res) => {
     const data = req.body
-    const { email, user_name, account_number, balance, gender } = data
+    const { email, fullName, accountNumber, balance, gender } = data
     if (!validateEmail(email)) {
         return res.json({
             success: false,
@@ -32,13 +32,13 @@ const createAccountController = async(req, res) => {
             message: message.MSG0003
         })
     }
-    if (!user_name) {
+    if (!fullName) {
         return res.json({
             success: false,
             message: message.MSG0004
         })
     }
-    if (!account_number) {
+    if (!accountNumber) {
         return res.json({
             success: false,
             message: message.MSG0005
@@ -66,7 +66,7 @@ const createAccountController = async(req, res) => {
 const updateAccountController = async (req, res) => {
     const id = req.params.id
     const data = req.body
-    const { email, user_name, account_number, balance, gender } = data
+    const { email, fullName, accountNumber, balance, gender } = data
     if (!validateEmail(email)) {
         return res.json({
             success: false,
@@ -79,13 +79,13 @@ const updateAccountController = async (req, res) => {
             message: message.MSG0003
         })
     }
-    if (!user_name) {
+    if (!fullName) {
         return res.json({
             success: false,
             message: message.MSG0004
         })
     }
-    if (!account_number) {
+    if (!accountNumber) {
         return res.json({
             success: false,
             message: message.MSG0005

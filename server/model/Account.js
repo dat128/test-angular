@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 import data from '../data/account.json';
 
 const accountSchema = new Schema({
-    user_name: {
+    fullName: {
         type: String,
         required: true,
     },
@@ -19,7 +19,7 @@ const accountSchema = new Schema({
         type: Number,
         required: true,
     },
-    account_number: {
+    accountNumber: {
         type: String,
         required: true,
     }
@@ -31,7 +31,7 @@ export default Account;
 
 Promise.all(
     data.map((item) => {
-        const query = { account_number: item.account_number };
+        const query = { accountNumber: item.accountNumber };
         const update = item;
         const option = {
             upsert: true,

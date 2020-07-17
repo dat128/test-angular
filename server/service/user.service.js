@@ -1,9 +1,9 @@
 import { comparePassword } from '../utils/helper'
 import User from '../model/User'
 
-const loginService = async (user_name, password) => {
-    const user = await User.findOne({ user_name })
-    if (!user || !password || !user_name) {
+const loginService = async (username, password) => {
+    const user = await User.findOne({ username })
+    if (!user || !password || !username) {
         return false
     }
     const compare = await comparePassword(password, user.password)

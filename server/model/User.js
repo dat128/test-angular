@@ -4,7 +4,7 @@ import data from '../data/user.json';
 import { hashPassword } from '../utils/helper';
 
 const userSchema = new Schema({
-    user_name: {
+    username: {
         type: String,
         required: true,
     },
@@ -25,7 +25,7 @@ export default User;
 
 Promise.all(
     data.map( async (item) => {
-        const query = { user_name: item.user_name };
+        const query = { username: item.username };
         const password = await hashPassword(item.password);
         item.password = password
         const update = item;
