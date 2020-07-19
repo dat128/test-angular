@@ -2,5 +2,5 @@
   <div class="col-md-12">
       <app-form-search (openEvent)='openModal($event)'></app-form-search>
   </div>
-  <app-table></app-table>
+  <app-table [rows]="accounts" [columns]="fields" [page]="page" [total]="total" (handlePage)="changePage($event)"></app-table>
 </div>

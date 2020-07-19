@@ -1,6 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Account } from 'src/app/model/account';
-import { AccountService } from 'src/app/service/account/account.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -8,23 +6,20 @@ import { AccountService } from 'src/app/service/account/account.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() data: any;
-  accounts: Account[];
+  @Input() rows: any;
+  @Input() columns: any;
+  @Input() page: Number;
+  @Input() total: Number;
 
-  constructor(
-    private accountService: AccountService
-  ) { }
+  @Output() handlePage = new EventEmitter();
+
+  constructor() { }
 
   ngOnInit() {
-    this.getAccounts();
   }
 
-  getAccounts() {
-    this.accountService.getListAccounts().subscribe(data => {
-      if (data.success) {
-        this.accounts = data.data;
-      }
-    });
+  changePage(event) {
+    this.handlePage.emit(event);
   }
 
 }
