@@ -13,8 +13,10 @@ export class AccountComponent implements OnInit {
   matDialogRef: MatDialogRef<DialogComponent>;
   accounts: Account[];
   fields: any[];
-  page: Number;
-  total: Number;
+  page: number;
+  total: number;
+  query: any = {};
+  isLoaded: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
@@ -56,18 +58,26 @@ export class AccountComponent implements OnInit {
   }
 
   getAccounts() {
-    this.accountService.getListAccounts().subscribe(data => {
+    this.accountService.getListAccounts(this.query).subscribe(data => {
       if (data.success) {
         this.accounts = data.data;
         this.page = data.page;
         this.total = data.total;
+        this.isLoaded = true;
       }
     });
   }
 
-  changePage(value) {
-    console.log(value);
-    // this.page = value;
+  changePage(value: number) {
+    this.query.page = value
+    this.getAccounts();
+  }
+
+  search(event: any) {
+    Object.keys(event).forEach((key) => (event[key] == null) && delete event[key]);;
+    this.query = event;
+    console.log(event)
+    this.getAccounts();
   }
 
 }

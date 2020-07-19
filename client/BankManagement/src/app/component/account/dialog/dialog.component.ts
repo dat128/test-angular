@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-  name: String;
+  name: string;
   formAccount: FormGroup;
   constructor(
     public formBuilder: FormBuilder,

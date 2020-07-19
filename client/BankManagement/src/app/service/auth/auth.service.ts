@@ -10,7 +10,7 @@ import { User } from 'src/app/model/user';
 })
 
 export class AuthService {
-  API_URL: String = 'http://localhost:3000/api';
+  API_URL: string = 'http://localhost:3000/api';
   httpOptions = {
     headers: new HttpHeaders({
        'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ export class AuthService {
     return localStorage.getItem('accessToken');
   }
 
-  isLoggedIn(): Boolean {
+  isLoggedIn(): boolean {
     const authToken = localStorage.getItem('accessToken');
     return authToken !== null ? true : false;
   }

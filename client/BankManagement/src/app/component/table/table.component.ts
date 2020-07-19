@@ -8,8 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class TableComponent implements OnInit {
   @Input() rows: any;
   @Input() columns: any;
-  @Input() page: Number;
-  @Input() total: Number;
+  @Input() page: number;
+  @Input() total: number;
+  @Input() pageSize: number;
 
   @Output() handlePage = new EventEmitter();
 

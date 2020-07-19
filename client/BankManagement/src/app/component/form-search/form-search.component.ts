@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormSearchComponent implements OnInit {
   @Output() openEvent = new EventEmitter();
+  @Output() searchEvent = new EventEmitter();
 
   searchForm: FormGroup;
 
@@ -24,6 +25,11 @@ export class FormSearchComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  search(event: any) {
+    console.log(this.searchForm.value);
+    this.searchEvent.emit(this.searchForm.value);
   }
 
   open() {

@@ -12,9 +12,9 @@ import { User } from 'src/app/model/user';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  invalidLogin: Boolean = false;
+  invalidLogin: boolean = false;
   user: User;
-  message: String;
+  message: string;
 
   constructor(
     public formBuilder: FormBuilder,

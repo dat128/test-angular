@@ -7,7 +7,7 @@ import { Account } from 'src/app/model/account';
   providedIn: 'root'
 })
 export class AccountService {
-  API_URL: String = 'http://localhost:3000/api';
+  API_URL: string = 'http://localhost:3000/api';
   httpOptions = {
     headers: new HttpHeaders({
        'Content-Type': 'application/json'
@@ -16,11 +16,11 @@ export class AccountService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getListAccounts(): Observable<any> {
-    return this.httpClient.get<any>(`${this.API_URL}/account`, this.httpOptions);
+  getListAccounts(query: any): Observable<any> {
+    return this.httpClient.get<any>(`${this.API_URL}/account`, {...this.httpOptions, params: query});
   }
 
-  getAccount(accountId: String): Observable<any> {
+  getAccount(accountId: string): Observable<any> {
     return this.httpClient.get<any>(`${this.API_URL}/account/${accountId}`, this.httpOptions);
   }
 
@@ -32,7 +32,7 @@ export class AccountService {
     return this.httpClient.put<any>(`${this.API_URL}/account`, account , this.httpOptions);
   }
 
-  deleteAccount(accountId: String): Observable<any> {
+  deleteAccount(accountId: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.API_URL}/account/${ accountId }` , this.httpOptions);
   }
 }
