@@ -23,5 +23,5 @@
     </tr>
     </tbody>
   </table>
-  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="total" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-end" [pageSize]="50" [collectionSize]="total" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
 </div>
