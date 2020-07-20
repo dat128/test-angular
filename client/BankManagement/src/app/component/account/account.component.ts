@@ -3,6 +3,7 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { Account } from 'src/app/model/account';
 import { AccountService } from 'src/app/service/account/account.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-account',
@@ -21,7 +22,8 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private matDialog: MatDialog,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private spinner: NgxSpinnerService
   ) {
     this.fields = [
       {
@@ -82,12 +84,14 @@ export class AccountComponent implements OnInit {
   }
 
   getAccounts() {
+    this.spinner.show();
     this.accountService.getListAccounts(this.query).subscribe(data => {
       if (data.success) {
         this.accounts = data.data;
         this.page = data.page;
         this.total = data.total;
         this.isLoaded = true;
+        this.spinner.hide();
       }
     });
   }
