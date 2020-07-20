@@ -9,7 +9,13 @@ const message = {
     MSG0008: 'This account number is already exist',
     MSG0009: 'This account is not found!',
     MSG0010: 'Invalid token!',
-    MSG0011: 'permission denied!'
+    MSG0011: 'permission denied!',
+    MSG0012: 'Add account successfully!',
+    MSG0013: 'Update account successfully!',
+    MSG0014: 'Delete account successfully!',
+    MSG0015: 'Address may not be blank!',
+    MSG0016: 'City may not be blank!',
+    MSG0017: 'Age is invalid!'
 }
 
 export default message

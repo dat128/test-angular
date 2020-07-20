@@ -2,31 +2,49 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label for="username">Full Name:</label>
+        <label>Full Name</label>
         <input type="text" class="form-control" formControlName="fullName" id="fullName">
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="username">Account Number:</label>
+        <label>Account Number</label>
         <input type="text" class="form-control" formControlName="accountNumber" id="accountNumber">
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="username">Balance:</label>
+        <label>Balance</label>
         <input type="text" class="form-control" formControlName="balance" id="balance">
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="username">Email:</label>
+        <label>Email</label>
         <input type="text" class="form-control" formControlName="email" id="email">
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="username">Gender:</label>
+        <label>Age</label>
+        <input type="text" class="form-control" formControlName="age" id="age">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" class="form-control" formControlName="address" id="address">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" formControlName="city" id="city">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Gender</label>
         <select class="form-control" formControlName="gender">
           <option value="">Choose gender</option>
           <option [ngValue]="1">Male</option>
@@ -37,11 +55,20 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <button type="submit" class="btn btn-primary" style="width:100px">Search</button>
-      <button type="reset" class="btn btn-info" style="width:100px; margin-left: 15px;">Reset</button>
+      <button type="submit" class="btn btn-primary" style="width:100px">
+        <i class="fa fa-search"></i>
+        Search
+      </button>
+      <button type="reset" class="btn btn-warning" style="width:100px; margin-left: 15px;">
+        <i class="fa fa-eraser"></i>
+        Reset
+      </button>
     </div>
     <div class="col-md-6 text-right">
-      <button type="button" class="btn btn-success" style="width:100px" (click)="open()">Add</button>
+      <button type="button" class="btn btn-success" style="width:100px" (click)="open()">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        Add
+      </button>
     </div>
   </div>
 </form>

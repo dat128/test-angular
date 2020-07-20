@@ -1,49 +1,149 @@
-<!-- <div class="row">
-  <div class="col-md-6"> -->
+<!-- <div class="row"> -->
+  <!-- <div class="col-md-6"> -->
+    <div class="container">
+    <div class="text-right icon-close">
+      <i (click)="closeDialog()" class="text-right" title="close" class="fa fa-times icon-close" aria-hidden="true"></i>
+    </div>
+    <ng-template [ngIf]="dataForm.action === 'delete'" [ngIfElse]="notDelete">
+      <div>
+        <h3>
+          <div>Are you sure you want to delete account: <b>{{this.dataForm.item.fullName}}</b> ?</div>
+        </h3>
+        <div class="d-flex justify-content-around">
+          <button title="Delete" class="btn btn-success btn-xs icon" (click)="closeDialog()">
+            No
+          </button>
+          <button title="Edit" class="btn btn-danger btn-xs icon" (click)="deleteAccount()">
+            Yes
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #notDelete>
+      <div class="title">
+        <h1>
+            <ng-template [ngIf]="dataForm.action === 'add'">
+              <b>Add new account</b>
+            </ng-template>
+            <ng-template [ngIf]="dataForm.action === 'view'">
+              <b>View account detail</b>
+            </ng-template>
+            <ng-template [ngIf]="dataForm.action === 'edit'">
+              <b>Edit account</b>
+            </ng-template>
+        </h1>
+    </div>
     <form [formGroup]="formAccount" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="username">Full Name:</label>
-            <input type="text" class="form-control" formControlName="fullName" id="fullName">
+            <label>
+              Full Name <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="fullName" id="fullName" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.fullName.errors">Full name is required</div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="username">Account Number:</label>
-            <input type="text" class="form-control" formControlName="accountNumber" id="accountNumber">
+            <label>
+              Account Number <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="accountNumber" id="accountNumber" [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.required">Account Number is required</div>
+            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.pattern">Account Number is only number</div>
+            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.maxlength">Max length of account number is 18</div>
+            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.minlength">Min length of account number is 10</div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="username">Balance:</label>
-            <input type="text" class="form-control" formControlName="balance" id="balance">
+            <label>
+              Balance <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="balance" id="balance" [ngClass]="{ 'is-invalid': submitted && f.balance.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.balance.errors?.required">Balance is required</div>
+            <div class="invalid-error" *ngIf="submitted && f.balance.errors?.pattern">Balance is only number</div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="username">Email:</label>
-            <input type="text" class="form-control" formControlName="email" id="email">
+            <label>
+              Email <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="email" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.email.errors?.required">Email is required</div>
+            <div class="invalid-error" *ngIf="submitted && f.email.errors?.pattern">Email's format is invalid</div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="username">Gender:</label>
-            <select class="form-control">
-              <option value="1">Male</option>
-              <option value="2">Female</option>
+            <label>
+              Age <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="age" id="age" [ngClass]="{ 'is-invalid': submitted && f.age.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.age.errors?.required">Age is required</div>
+            <div class="invalid-error" *ngIf="submitted && f.age.errors?.pattern">Age is only number</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>
+              Address <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="address" id="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.address.errors?.required">Balance is required</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>
+              City <span class="required-icon">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="city" id="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+            <div class="invalid-error" *ngIf="submitted && f.city.errors?.required">City is required</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>
+              Gender <span class="required-icon">*</span>
+            </label>
+            <select class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
+            [attr.disabled]="dataForm.action === 'view' ? '' : null">
+              <option value="">Choose gender</option>
+              <option [ngValue]="'1'">Male</option>
+              <option [ngValue]="'2'">Female</option>
             </select>
+            <div class="invalid-error" *ngIf="submitted && f.gender.errors">Gender is required</div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
         </div>
-        <div class="col-md-6 text-right">
-          <button type="submit" class="btn btn-success" style="width:100px">Add</button>
-          <button type="button" class="btn btn-info" style="width:100px; margin-left: 15px;">Reset</button>
+        <div class="col-md-6 text-right" [style.display]="dataForm.action === 'view' ? 'none' : ''">
+          <button type="submit" class="btn btn-success" style="width:100px">
+            <ng-template [ngIf]="dataForm.action === 'add'">
+              <b>Add</b>
+            </ng-template>
+            <ng-template [ngIf]="dataForm.action === 'edit'">
+              <b>Edit</b>
+            </ng-template>
+          </button>
+          <button type="reset" class="btn btn-info" style="width:100px; margin-left: 15px;">Reset</button>
         </div>
       </div>
     </form>
-  <!-- </div>
-</div> -->
+    </ng-template>
+  </div>
+
+  <!-- </div> -->
+<!-- </div> -->

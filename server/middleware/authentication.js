@@ -13,7 +13,6 @@ const authentication = async (req, res, next) => {
             })
         }
         const data = await verifyJWTToken(token)
-        console.log(data)
         const user = await User.findById(data.id)
         if (!user) {
             res.status(401)

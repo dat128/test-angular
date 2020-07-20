@@ -20,6 +20,9 @@ export class FormSearchComponent implements OnInit {
       accountNumber: [''],
       balance: [''],
       email: [''],
+      city: [''],
+      age: [''],
+      address: [''],
       gender: [''],
     });
   }
@@ -28,7 +31,6 @@ export class FormSearchComponent implements OnInit {
   }
 
   search(event: any) {
-    console.log(this.searchForm.value);
     this.searchEvent.emit(this.searchForm.value);
   }
 

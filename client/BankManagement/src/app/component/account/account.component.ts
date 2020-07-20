@@ -16,7 +16,8 @@ export class AccountComponent implements OnInit {
   page: number;
   total: number;
   query: any = {};
-  isLoaded: boolean = false;
+  isLoaded: boolean;
+  title: string;
 
   constructor(
     private matDialog: MatDialog,
@@ -26,24 +27,45 @@ export class AccountComponent implements OnInit {
       {
         label: 'FullName',
         field: 'fullName',
+        width: '200'
       },
       {
         label: 'Email',
-        field: 'email'
+        field: 'email',
+        width: '150'
       },
       {
         label: 'Account Number',
-        field: 'accountNumber'
+        field: 'accountNumber',
+        width: '150'
       },
       {
         label: 'Balance',
-        field: 'balance'
+        field: 'balance',
+        width: '150',
       },
       {
         label: 'Gender',
-        field: 'gender'
+        field: 'gender',
+        width: '150',
+      },
+      {
+        label: 'Age',
+        field: 'age',
+        width: '150',
+      },
+      {
+        label: 'City',
+        field: 'city',
+        width: '150',
+      },
+      {
+        label: 'Address',
+        field: 'address',
+        width: '150',
       }
     ];
+    this.title = 'List bank account';
   }
 
   ngOnInit() {
@@ -52,7 +74,9 @@ export class AccountComponent implements OnInit {
 
   openModal($event: any) {
     this.matDialogRef = this.matDialog.open(DialogComponent, {
-      data: 'abc',
+      data: {
+        action: 'add'
+      },
       disableClose: false
     });
   }
@@ -69,14 +93,17 @@ export class AccountComponent implements OnInit {
   }
 
   changePage(value: number) {
-    this.query.page = value
+    this.query.page = value;
     this.getAccounts();
   }
 
   search(event: any) {
-    Object.keys(event).forEach((key) => (event[key] == null) && delete event[key]);;
+    Object.keys(event).forEach((key) => (event[key] == null) && delete event[key]);
     this.query = event;
-    console.log(event)
+    this.getAccounts();
+  }
+
+  reloadData() {
     this.getAccounts();
   }
 

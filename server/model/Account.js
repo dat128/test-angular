@@ -9,17 +9,30 @@ const accountSchema = new Schema({
     },
     email: {
         type: String,
+        required: true
     },
     gender: {
-        type: Number,
-        enum: [1, 2],
+        type: String,
+        enum: ['1', '2'],
         required: true,
     },
     balance: {
-        type: Number,
+        type: String,
         required: true,
     },
     accountNumber: {
+        type: String,
+        required: true,
+    },
+    age: {
+        type: String,
+        required: true,
+    },
+    city: {
+        type: String,
+        required: true,
+    },
+    address: {
         type: String,
         required: true,
     }

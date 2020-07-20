@@ -12,7 +12,7 @@ import { User } from 'src/app/model/user';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  invalidLogin: boolean = false;
+  invalidLogin: boolean;
   user: User;
   message: string;
 
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(data => {
       if (data.success === true) {
         window.localStorage.setItem('accessToken', data.accessToken);
+        window.localStorage.setItem('user', JSON.stringify(data.user));
         this.router.navigate(['account']);
       } else {
         this.invalidLogin = true;

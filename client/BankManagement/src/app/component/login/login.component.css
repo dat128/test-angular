@@ -1,0 +1,24 @@
+.error {
+    color: red;
+}
+.btn-login {
+    margin-top: 10px;
+    min-width: 200px;
+    cursor: pointer;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    background: #e9faff;
+}
+.login-container {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    padding: 40px;
+    background: white;
+}

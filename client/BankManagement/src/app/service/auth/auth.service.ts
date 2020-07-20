@@ -10,7 +10,7 @@ import { User } from 'src/app/model/user';
 })
 
 export class AuthService {
-  API_URL: string = 'http://localhost:3000/api';
+  API_URL: string;
   httpOptions = {
     headers: new HttpHeaders({
        'Content-Type': 'application/json'
@@ -18,16 +18,17 @@ export class AuthService {
   };
   currentUser = {};
 
-  constructor(private httpClient: HttpClient, public router: Router) {}
+  constructor(private httpClient: HttpClient, public router: Router) {
+    this.API_URL = 'http://localhost:3000/api';
+  }
 
   login(user: User): Observable<any> {
       return this.httpClient.post<any>(`${this.API_URL}/user/login`, user, this.httpOptions);
   }
 
   logout() {
-    if (localStorage.removeItem('accessToken') === null) {
-      this.router.navigate(['/login']);
-    }
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
   getAccessToken() {

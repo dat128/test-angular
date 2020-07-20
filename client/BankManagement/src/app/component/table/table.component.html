@@ -1,5 +1,5 @@
 <div class="col-md-12 user-container">
-  <h2 style="text-align: center;"> Bank Account</h2>
+  <h1 class="text-center font-weight-bold">{{ titleTable }}</h1>
   <table class="table table-striped table-bordered">
     <thead>
     <tr>
@@ -11,17 +11,45 @@
     </tr>
     </thead>
     <tbody>
+    <ng-template [ngIf]="rows.length === 0">
+      <tr>
+        <td colspan="10" class="not-found">
+          No results found
+        </td>
+      </tr>
+    </ng-template>
     <tr *ngFor="let item of rows; let i = index">
       <td class="hidden">{{ pageSize * (page - 1) + i + 1 }}</td>
-      <td *ngFor="let item1 of columns">
-        {{ item[item1.field] }}
+      <td *ngFor="let column of columns">
+        <ng-template [ngIf]="column.field === 'gender'" [ngIfElse]="notGender">
+          {{ item.gender === '1' ? 'Male' : 'Female' }}
+        </ng-template>
+        <ng-template #notGender>
+          {{ item[column.field] }}
+        </ng-template>
       </td>
       <td>
-        <button class="btn btn-success"> Delete</button>
-        <button class="btn btn-success" style="margin-left: 20px;"> Edit</button>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-info" (click)="openModal(item, 'view')">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+          </button>
+          <ng-template [ngIf]="role === 'admin'">
+            <button class="btn btn-secondary" (click)="openModal(item, 'edit')">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-danger" (click)="openModal(item, 'delete')">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </ng-template>
+        </div>
       </td>
     </tr>
     </tbody>
   </table>
-  <ngb-pagination class="d-flex justify-content-end" [pageSize]="pageSize" [collectionSize]="total" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
+  <div>
+    <ngb-pagination class="d-flex justify-content-end" [pageSize]="pageSize" [collectionSize]="total" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
+    <div class="footer-pagination">
+      Total results: {{ total }}
+    </div>
+  </div>
 </div>

@@ -1,8 +1,9 @@
 <div class="container">
+  <app-header></app-header>
   <div class="col-md-12">
       <app-form-search (openEvent)='openModal($event)' (searchEvent)='search($event)'></app-form-search>
   </div>
   <ng-template [ngIf]="isLoaded">
-    <app-table [rows]="accounts" [columns]="fields" [page]="page" [total]="total" (handlePage)="changePage($event)" [pageSize]="50"></app-table>
+    <app-table [rows]="accounts" [columns]="fields" [page]="page" [total]="total" (handlePage)="changePage($event)" [pageSize]="50" [titleTable]="title" (removeSucc)="reloadData()"></app-table>
   </ng-template>
 </div>

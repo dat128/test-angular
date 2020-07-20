@@ -1,0 +1,13 @@
+.invalid-error {
+    margin-top: 5px;
+}
+.title h1 {
+    margin-bottom: 10px;
+}
+.icon-close {
+    cursor: pointer;
+}
+.required-icon {
+    color: red;
+    margin-left: 5px;
+}

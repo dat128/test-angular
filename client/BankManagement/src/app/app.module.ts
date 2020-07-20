@@ -4,6 +4,8 @@ import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/c
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { FormSearchComponent } from './component/form-search/form-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './component/account/dialog/dialog.component';
+import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { DialogComponent } from './component/account/dialog/dialog.component';
     LoginComponent,
     TableComponent,
     FormSearchComponent,
-    DialogComponent
+    DialogComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { DialogComponent } from './component/account/dialog/dialog.component';
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    NgbModule
+    NgbModule,
+    CommonModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

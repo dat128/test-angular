@@ -1,10 +1,11 @@
 import express from 'express';
-import { getAccountsController, createAccountController, updateAccountController, deleteAccountController } from '../controller/account.controller';
+import { getAccountsController, createAccountController, updateAccountController, deleteAccountController, getAccountController } from '../controller/account.controller';
 import { authorization } from '../middleware/authorization'
 
 const router = new express.Router();
 
 router.get('/', authorization(['admin', 'normal']), getAccountsController)
+router.get('/:id', authorization(['admin', 'normal']), getAccountController)
 router.post('/', authorization(['admin']), createAccountController)
 router.put('/:id', authorization(['admin']), updateAccountController)
 router.delete('/:id', authorization(['admin']), deleteAccountController)

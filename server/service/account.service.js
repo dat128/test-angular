@@ -3,9 +3,12 @@ import message from '../constant/message'
 
 const getAccountsService = async (query, limit, skip) => {
     const gender = query.gender || null
+    const age = query.age || null
     const fullName = new RegExp(query.fullName, 'i')
     const accountNumber = new RegExp(query.accountNumber, 'i')
     const email = new RegExp(query.email, 'i')
+    const city = new RegExp(query.city, 'i')
+    const address = new RegExp(query.address, 'i')
     const col = query.col || null
     const sort = query.sort || null
     let sortCondition = {}
@@ -20,10 +23,19 @@ const getAccountsService = async (query, limit, skip) => {
             {
                 email
             },
+            {
+                city
+            },
+            {
+                address
+            },
         ]
     }
     if (gender) {
         queryDb.$and.push({ gender })
+    }
+    if (age) {
+        queryDb.$and.push({ age })
     }
     if (col && sort) {
         sortCondition[col] = sort === 'desc' ? -1 : 1
@@ -54,7 +66,6 @@ const createAccountService = async (data) => {
     }
     const newAccount = new Account(data);
     const value = await newAccount.save()
-    console.log('123', value);
     return {
         result: true,
         value
@@ -71,19 +82,23 @@ const updateAccountService = async (id, data) => {
     }
     if (data.email) {
         account = await Account.findOne({ email: data.email })
-        if (account.id !== id) {
-            return {
-                result: false,
-                message: message.MSG0007
+        if(account) {
+            if (!(String(account._id) === id)) {
+                return {
+                    result: false,
+                    message: message.MSG0007
+                }
             }
         }
     }
-    if (data.account_number) {
+    if (data.accountNumber) {
         account = await Account.findOne({ accountNumber: data.accountNumber })
-        if (account.id !== id) {
-            return {
-                result: false,
-                message: message.MSG0008
+        if (account) {
+            if (!(String(account._id) === id)) {
+                return {
+                    result: false,
+                    message: message.MSG0008
+                }
             }
         }
     }
@@ -96,7 +111,6 @@ const updateAccountService = async (id, data) => {
             upsert: true
         }
     )
-    console.log(updValue)
     return {
         result: true,
         data: updValue
@@ -112,10 +126,23 @@ const deleteAccountService = async (id) => {
         }
     }
     const value = await account.remove()
-    console.log(value)
     return {
         result: true,
         data: value
+    }
+}
+
+const getAccountService = async (id) => {
+    let account = await Account.findById(id)
+    if(!account) {
+        return {
+            result: false,
+            message: message.MSG0009
+        }
+    }
+    return {
+        result: true,
+        data: account
     }
 }
 
@@ -123,5 +150,6 @@ export {
     getAccountsService,
     createAccountService,
     updateAccountService,
-    deleteAccountService
+    deleteAccountService,
+    getAccountService
 }

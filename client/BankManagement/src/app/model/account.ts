@@ -1,8 +1,11 @@
 export class Account {
     _id: string;
-    name: string;
+    fullName: string;
     email: string;
-    gender: number;
-    balance: number;
+    gender: string;
+    balance: string;
     accountNumber: string;
+    age: string;
+    city: string;
+    address: string;
 }

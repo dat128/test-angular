@@ -49,7 +49,6 @@ const generateJWTToken = async function(data) {
 }
 
 const verifyJWTToken = async function(token) {
-    console.log(123)
     const data = jwt.verify(token, config.secretSignature)
     return data
 }
