@@ -91,8 +91,8 @@ export class AccountComponent implements OnInit {
         this.page = data.page;
         this.total = data.total;
         this.isLoaded = true;
-        this.spinner.hide();
       }
+      this.spinner.hide();
     });
   }
 
