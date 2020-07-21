@@ -66,7 +66,7 @@
             <input type="text" class="form-control" formControlName="balance" id="balance" [ngClass]="{ 'is-invalid': submitted && f.balance.errors }"
             [attr.disabled]="dataForm.action === 'view' ? '' : null">
             <div class="invalid-error" *ngIf="submitted && f.balance.errors?.required">Balance is required</div>
-            <div class="invalid-error" *ngIf="submitted && f.balance.errors?.pattern">Balance is only number</div>
+            <div class="invalid-error" *ngIf="submitted && f.balance.errors?.pattern">Balance is only number and maximum 3 places after the point.</div>
           </div>
         </div>
         <div class="col-md-6">

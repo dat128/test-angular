@@ -14,8 +14,18 @@
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label>Balance</label>
-        <input type="text" class="form-control" formControlName="balance" id="balance">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Min balance value</label>
+            <input type="text" class="form-control" formControlName="minBalance" id="minBalance">
+            <div class="invalid-error" *ngIf="submitted && f.minBalance.errors?.pattern">Balance is only number and maximum 3 places after the point.</div>
+          </div>
+          <div class="col-md-6">
+            <label>Max balance value</label>
+            <input type="text" class="form-control" formControlName="maxBalance" id="maxBalance">
+            <div class="invalid-error" *ngIf="submitted && f.maxBalance.errors?.pattern">Balance is only number and maximum 3 places after the point.</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-6">

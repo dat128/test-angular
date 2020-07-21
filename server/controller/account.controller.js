@@ -7,7 +7,8 @@ const getAccountsController = async (req, res) => {
     const { query } = req
     const pagination = getPaginationItems(query.page, query.limit)
     query.fullName = query.fullName ? query.fullName.trim() : ''
-    query.balance = query.balance ? query.balance.trim() : ''
+    query.minBalance = Number(query.minBalance)
+    query.maxBalance = Number(query.maxBalance)
     query.accountNumber = query.accountNumber ? query.accountNumber.trim() : ''
     query.email = query.email ? query.email.trim() : ''
     query.age = query.age ? query.age.trim() : ''
@@ -27,7 +28,7 @@ const getAccountsController = async (req, res) => {
 const createAccountController = async(req, res) => {
     const data = req.body
     data.fullName = data.fullName ? data.fullName.trim() : ''
-    data.balance = data.balance ? data.balance.trim() : ''
+    data.balance = data.balance ? String(data.balance).trim() : ''
     data.accountNumber = data.accountNumber ? data.accountNumber.trim() : ''
     data.email = data.email ? data.email.trim() : ''
     data.age = data.age ? data.age.trim() : ''
@@ -100,7 +101,7 @@ const updateAccountController = async (req, res) => {
     const id = req.params.id
     const data = req.body
     data.fullName = data.fullName ? data.fullName.trim() : ''
-    data.balance = data.balance ? data.balance.trim() : ''
+    data.balance = data.balance ? String(data.balance).trim() : ''
     data.accountNumber = data.accountNumber ? data.accountNumber.trim() : ''
     data.email = data.email ? data.email.trim() : ''
     data.age = data.age ? data.age.trim() : ''

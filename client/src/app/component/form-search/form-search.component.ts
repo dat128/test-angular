@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Constant } from 'src/app/common/constant';
 
 @Component({
   selector: 'app-form-search',
@@ -11,6 +12,7 @@ export class FormSearchComponent implements OnInit {
   @Output() searchEvent = new EventEmitter();
 
   searchForm: FormGroup;
+  submitted: boolean;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -18,10 +20,11 @@ export class FormSearchComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       fullName: [''],
       accountNumber: [''],
-      balance: [''],
+      minBalance: ['', [Validators.pattern(Constant.PATTERN.DOUBLE)]],
+      maxBalance: ['', [Validators.pattern(Constant.PATTERN.DOUBLE)]],
       email: [''],
       city: [''],
-      age: [''],
+      age: ['', [Validators.pattern(Constant.PATTERN.NUMBER)]],
       address: [''],
       gender: [''],
     });
@@ -30,8 +33,13 @@ export class FormSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  get f() { return this.searchForm.controls; }
+
   search(event: any) {
-    this.searchEvent.emit(this.searchForm.value);
+    this.submitted = true;
+    if (!this.searchForm.invalid) {
+      this.searchEvent.emit(this.searchForm.value);
+    }
   }
 
   open() {

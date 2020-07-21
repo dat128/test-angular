@@ -81,6 +81,11 @@ export class AccountComponent implements OnInit {
       },
       disableClose: false
     });
+    this.matDialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+          this.getAccounts();
+      }
+    });
   }
 
   getAccounts() {

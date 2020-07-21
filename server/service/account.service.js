@@ -37,10 +37,20 @@ const getAccountsService = async (query, limit, skip) => {
     if (age) {
         queryDb.$and.push({ age })
     }
+    if (query.minBalance) {
+        queryDb.$and.push({ balance: {
+            $gte: query.minBalance
+        } })
+    }
+    if (query.maxBalance) {
+        queryDb.$and.push({ balance: {
+            $lte: query.maxBalance
+        } })
+    }
     if (col && sort) {
         sortCondition[col] = sort === 'desc' ? -1 : 1
     }
-    const accounts = await Account.find(queryDb).limit(limit).skip(skip).sort(sortCondition)
+    const accounts = await Account.find(queryDb).limit(limit).skip(skip).sort({...sortCondition, createdAt: -1})
     const total = await Account.countDocuments(queryDb)
     return {
         accounts,
