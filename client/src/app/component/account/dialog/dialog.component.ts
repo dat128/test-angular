@@ -32,7 +32,7 @@ export class DialogComponent implements OnInit {
       balance: ['', [Validators.required, Validators.pattern(Constant.PATTERN.DOUBLE)]],
       gender: ['', Validators.required],
       accountNumber: ['',
-      [Validators.required, Validators.pattern(Constant.PATTERN.NUMBER), Validators.maxLength(18), Validators.minLength(10)]],
+      [Validators.required, Validators.pattern(Constant.PATTERN.NUMBER), Validators.maxLength(12), Validators.minLength(12)]],
       age: ['',
       [Validators.required, Validators.pattern(Constant.PATTERN.NUMBER)]],
       city: ['', Validators.required],

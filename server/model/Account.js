@@ -47,8 +47,9 @@ export default Account;
 
 Promise.all(
     data.map((item) => {
-        const query = { accountNumber: item.accountNumber };
+        const query = { accountNumber: item.accountNumber, email: item.email };
         const update = item;
+        update.accountNumber = update.accountNumber.substring(0,12)
         const option = {
             upsert: true,
             new: true,

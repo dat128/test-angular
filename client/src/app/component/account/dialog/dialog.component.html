@@ -10,11 +10,11 @@
           <div>Are you sure you want to delete account: <b>{{this.dataForm.item.fullName}}</b> ?</div>
         </h3>
         <div class="d-flex justify-content-around">
-          <button title="Delete" class="btn btn-success btn-xs icon" (click)="closeDialog()">
-            No
-          </button>
-          <button title="Edit" class="btn btn-danger btn-xs icon" (click)="deleteAccount()">
+          <button title="Yes" class="btn btn-success btn-xs icon" style="width: 100px" (click)="deleteAccount()">
             Yes
+          </button>
+          <button title="No" class="btn btn-danger btn-xs icon" style="width: 100px" (click)="closeDialog()">
+            No
           </button>
         </div>
       </div>
@@ -54,8 +54,8 @@
             [attr.disabled]="dataForm.action === 'view' ? '' : null">
             <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.required">Account Number is required</div>
             <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.pattern">Account Number is only number</div>
-            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.maxlength">Max length of account number is 18</div>
-            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.minlength">Min length of account number is 10</div>
+            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.maxlength">Length of account number is 12</div>
+            <div class="invalid-error" *ngIf="submitted && f.accountNumber.errors?.minlength">Length of account number is 12</div>
           </div>
         </div>
         <div class="col-md-6">

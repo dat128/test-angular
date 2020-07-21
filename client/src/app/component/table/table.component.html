@@ -20,7 +20,7 @@
     </ng-template>
     <tr *ngFor="let item of rows; let i = index">
       <td class="hidden">{{ pageSize * (page - 1) + i + 1 }}</td>
-      <td *ngFor="let column of columns">
+      <td *ngFor="let column of columns" [ngStyle]="column.style">
         <ng-template [ngIf]="column.field === 'gender'" [ngIfElse]="notGender">
           {{ item.gender === '1' ? 'Male' : 'Female' }}
         </ng-template>

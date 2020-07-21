@@ -29,42 +29,58 @@ export class AccountComponent implements OnInit {
       {
         label: 'FullName',
         field: 'fullName',
-        width: '200'
+        style: {
+          'text-align': 'left',
+        }
       },
       {
         label: 'Email',
         field: 'email',
-        width: '150'
+        style: {
+          'text-align': 'left',
+        }
       },
       {
         label: 'Account Number',
         field: 'accountNumber',
-        width: '150'
+        style: {
+          'text-align': 'center',
+        }
       },
       {
         label: 'Balance',
         field: 'balance',
-        width: '150',
+        style: {
+          'text-align': 'center',
+        }
       },
       {
         label: 'Gender',
         field: 'gender',
-        width: '150',
+        style: {
+          'text-align': 'left',
+        }
       },
       {
         label: 'Age',
         field: 'age',
-        width: '150',
+        style: {
+          'text-align': 'center',
+        }
       },
       {
         label: 'City',
         field: 'city',
-        width: '150',
+        style: {
+          'text-align': 'left',
+        }
       },
       {
         label: 'Address',
         field: 'address',
-        width: '150',
+        style: {
+          'text-align': 'left',
+        }
       }
     ];
     this.title = 'List bank account';
@@ -92,7 +108,11 @@ export class AccountComponent implements OnInit {
     this.spinner.show();
     this.accountService.getListAccounts(this.query).subscribe(data => {
       if (data.success) {
-        this.accounts = data.data;
+        this.accounts = data.data.map(
+          item => {
+            return { ...item, balance: item.balance.toLocaleString() };
+          }
+        );
         this.page = data.page;
         this.total = data.total;
         this.isLoaded = true;
